@@ -60,40 +60,88 @@
 
 <div class="numpad-container">
   <!-- Row 1: Function Buttons -->
-  <Button class="btn-function" on:click={() => {}}>OFF</Button>
-  <Button class="btn-function">M+</Button>
-  <Button class="btn-function">M-</Button>
-  <Button class="btn-function">MR</Button>
+  <Button class="btn-function" onclick={() => {}}>
+    {#snippet children()}OFF{/snippet}
+  </Button>
+  <Button class="btn-function">
+    {#snippet children()}M+{/snippet}
+  </Button>
+  <Button class="btn-function">
+    {#snippet children()}M−{/snippet}
+  </Button>
+  <Button class="btn-function">
+    {#snippet children()}MR{/snippet}
+  </Button>
 
   <!-- Row 2: First number row -->
-  <Button class="btn-function">MC</Button>
-  <Button class="btn-number" on:click={() => addToInput('7')}>7</Button>
-  <Button class="btn-number" on:click={() => addToInput('8')}>8</Button>
-  <Button class="btn-number" on:click={() => addToInput('9')}>9</Button>
-  <Button class="btn-operator" on:click={() => addToInput('/')}>&divide;</Button>
+  <Button class="btn-function">
+    {#snippet children()}MC{/snippet}
+  </Button>
+  <Button class="btn-number" onclick={() => addToInput('7')}>
+    {#snippet children()}7{/snippet}
+  </Button>
+  <Button class="btn-number" onclick={() => addToInput('8')}>
+    {#snippet children()}8{/snippet}
+  </Button>
+  <Button class="btn-number" onclick={() => addToInput('9')}>
+    {#snippet children()}9{/snippet}
+  </Button>
+  <Button class="btn-operator" onclick={() => addToInput('/')}>
+    {#snippet children()}÷{/snippet}
+  </Button>
 
   <!-- Row 3: Second number row -->
-  <Button class="btn-function">GT</Button>
-  <Button class="btn-number" on:click={() => addToInput('4')}>4</Button>
-  <Button class="btn-number" on:click={() => addToInput('5')}>5</Button>
-  <Button class="btn-number" on:click={() => addToInput('6')}>6</Button>
-  <Button class="btn-operator" on:click={() => addToInput('*')}>&times;</Button>
+  <Button class="btn-function">
+    {#snippet children()}GT{/snippet}
+  </Button>
+  <Button class="btn-number" onclick={() => addToInput('4')}>
+    {#snippet children()}4{/snippet}
+  </Button>
+  <Button class="btn-number" onclick={() => addToInput('5')}>
+    {#snippet children()}5{/snippet}
+  </Button>
+  <Button class="btn-number" onclick={() => addToInput('6')}>
+    {#snippet children()}6{/snippet}
+  </Button>
+  <Button class="btn-operator" onclick={() => addToInput('*')}>
+    {#snippet children()}×{/snippet}
+  </Button>
 
   <!-- Row 4: Third number row -->
-  <Button class="btn-function" on:click={() => addToInput('%')}>%</Button>
-  <Button class="btn-number" on:click={() => addToInput('1')}>1</Button>
-  <Button class="btn-number" on:click={() => addToInput('2')}>2</Button>
-  <Button class="btn-number" on:click={() => addToInput('3')}>3</Button>
-  <Button class="btn-operator" on:click={() => addToInput(' - ')}>&minus;</Button>
+  <Button class="btn-function" onclick={() => addToInput('%')}>
+    {#snippet children()}%{/snippet}
+  </Button>
+  <Button class="btn-number" onclick={() => addToInput('1')}>
+    {#snippet children()}1{/snippet}
+  </Button>
+  <Button class="btn-number" onclick={() => addToInput('2')}>
+    {#snippet children()}2{/snippet}
+  </Button>
+  <Button class="btn-number" onclick={() => addToInput('3')}>
+    {#snippet children()}3{/snippet}
+  </Button>
+  <Button class="btn-operator" onclick={() => addToInput(' - ')}>
+    {#snippet children()}−{/snippet}
+  </Button>
 
   <!-- Row 5: Last number row -->
-  <Button class="btn-function" on:click={() => del()}>DEL</Button>
-  <Button class="btn-number long" on:click={() => addToInput('0')}>0</Button>
-  <Button class="btn-number" on:click={() => addToInput('.')}>&sdot;</Button>
-  <Button class="btn-operator" on:click={() => addToInput('+')}>+</Button>
+  <Button class="btn-function" onclick={() => del()}>
+    {#snippet children()}DEL{/snippet}
+  </Button>
+  <Button class="btn-number long" onclick={() => addToInput('0')}>
+    {#snippet children()}0{/snippet}
+  </Button>
+  <Button class="btn-number" onclick={() => addToInput('.')}>
+    {#snippet children()}·{/snippet}
+  </Button>
+  <Button class="btn-operator" onclick={() => addToInput('+')}>
+    {#snippet children()}+{/snippet}
+  </Button>
 
   <!-- Row 6: Equals -->
-  <Button class="btn-equals wide" on:click={() => equal()}>&equals;</Button>
+  <Button class="btn-equals wide" onclick={() => equal()}>
+    {#snippet children()}={/snippet}
+  </Button>
 </div>
 
 <style>

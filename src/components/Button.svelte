@@ -1,9 +1,11 @@
 <script>
-  export let isdisabled = false
+  let { isdisabled = false, children, onclick } = $props()
 </script>
 
-<button type="button" disabled={isdisabled} aria-label="button" on:click>
-  <slot />
+<button type="button" disabled={isdisabled} aria-label="button" {onclick}>
+  {#if children}
+    {@render children()}
+  {/if}
 </button>
 
 <style lang="scss">
