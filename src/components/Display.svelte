@@ -1,9 +1,9 @@
 <script>
-  import { evaluate, fraction } from 'mathjs'
+  import { evaluate } from 'mathjs'
   import Button from "./Button.svelte"
 
   let numberInput = $state('')
-  let cursorPosition = $state(0)
+  let memory = $state(0)
 
   let total = $derived.by(() => {
     try {
@@ -21,24 +21,12 @@
     numberInput = total.toString()
   }
 
-  function fractional() {
-    try {
-      return fraction(numberInput)
-    } catch {
-      return numberInput
-    }
-  }
-
   function clearInput() {
     numberInput = ""
   }
 
   function del() {
     numberInput = numberInput.slice(0, -1)
-  }
-
-  function handleInput(event) {
-    cursorPosition = event.target.selectionStart
   }
 </script>
 
@@ -49,8 +37,7 @@
         id="arithmetic" 
         type="text" 
         autocomplete="off" 
-        oninput={handleInput}
-        bind:value={numberInput} 
+        bind:value={numberInput}
         class="input-field"
       />
       <output name="result" for="arithmetic" class="output-field">{total}</output>
@@ -60,21 +47,21 @@
 
 <div class="numpad-container">
   <!-- Row 1: Function Buttons -->
-  <Button class="btn-function" onclick={() => {}}>
+  <Button class="btn-function" onclick={() => clearInput()}>
     {#snippet children()}OFF{/snippet}
   </Button>
-  <Button class="btn-function">
+  <Button class="btn-function" onclick={() => { memory += total }}>
     {#snippet children()}M+{/snippet}
   </Button>
-  <Button class="btn-function">
+  <Button class="btn-function" onclick={() => { memory -= total }}>
     {#snippet children()}M−{/snippet}
   </Button>
-  <Button class="btn-function">
+  <Button class="btn-function" onclick={() => { numberInput = memory.toString() }}>
     {#snippet children()}MR{/snippet}
   </Button>
 
   <!-- Row 2: First number row -->
-  <Button class="btn-function">
+  <Button class="btn-function" onclick={() => { memory = 0 }}>
     {#snippet children()}MC{/snippet}
   </Button>
   <Button class="btn-number" onclick={() => addToInput('7')}>
@@ -91,7 +78,7 @@
   </Button>
 
   <!-- Row 3: Second number row -->
-  <Button class="btn-function">
+  <Button class="btn-function" onclick={() => { memory += total }}>
     {#snippet children()}GT{/snippet}
   </Button>
   <Button class="btn-number" onclick={() => addToInput('4')}>

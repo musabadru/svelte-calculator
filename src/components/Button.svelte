@@ -1,5 +1,5 @@
 <script>
-  let { isdisabled = false, children, onclick } = $props()
+  let { isdisabled = false, children, onclick = () => {} } = $props()
 </script>
 
 <button type="button" disabled={isdisabled} aria-label="button" {onclick}>
