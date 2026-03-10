@@ -1,109 +1,42 @@
 <script>
-  import Button from './Button.svelte'
   export let isdisabled = false
-  export let dark = true
-  export let orange = false
-  export let gray = false
-  export let setting = false
-  export let largeBtn = false
-  
-  
-  
-
-
 </script>
-<button type="button" disabled={isdisabled} aria-label="button" class:dark class:orange class:setting class:gray class:largeBtn on:click>
+
+<button type="button" disabled={isdisabled} aria-label="button" on:click>
   <slot />
 </button>
 
 <style lang="scss">
   button {
     all: unset;
-
-    --dropshadow: lch(3.5 1.2 302);
-
     cursor: pointer;
-    font-size: 2.2rem;
-    font-weight: 500;
-    border-radius: var(--border-radius);
-    filter: drop-shadow(1px 1px 2px var(--dropshadow));
+    font-size: 1.8rem;
+    font-weight: 600;
     width: var(--width);
     height: var(--height);
     text-align: center;
+    border-radius: 0.6rem;
+    transition: all 100ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    user-select: none;
 
-    color: var(--btn-clr);
-    background-color: var(--btn-bg);
-    border-top: 1.5px solid var(--btn-top);
-    margin-block-end: 2rem;
-    margin-inline-end: 1.8rem;
-
-    transition: all 300ms;
-
-
-    &:hover {
-      transform: translateY(3px);
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.25);
     }
 
-  }
+    &:active:not(:disabled) {
+      transform: translateY(0px);
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
 
-
-  .dark {
-    background-color: var(--btn-dark-bg);
-    color: var(--btn-dark-clr);
-    border-top: 1.5px solid var(--btn-dark-top);
-
-
-    &:hover,
-    &:focus {
-      background-color: var(--btn-dark-bg-hov);
-
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
   }
-
-  .orange {
-    background-color: var(--btn-orange-bg);
-    color: var(--btn-orange-clr);
-    border-top: 1px solid var(--btn-orange-top);
-
-    /* filter: drop-shadow(1px 1px 3px lch(28.9 25.4 47)); */
-
-    &:hover,
-    &:focus {
-      background-color: var(--btn-orange-bg-hov);
-
-    }
-  }
-
-  .gray {
-    background-color: var(--btn-gray-bg);
-    color: var(--btn-gray-clr);
-    border-top: 1px solid var(--btn-gray-top);
-
-    &:hover,
-    &:focus {
-      background-color: var(--btn-gray-bg-hov);
-
-    }
-  }
-
-  .setting {
-    background-color: var(--btn-setting-bg);
-    color: var(--btn-setting-clr);
-    border-top: 1px solid var(--btn-setting-top);
-
-    &:hover,
-    &:focus {
-      background-color: var(--btn-setting-bg-hov);
-
-    }
-  }
-
-  .largeBtn {
-    width: var(--large);
-    grid-column: span 2;
-    margin-inline: auto;
-  }
-  
-  
-  
 </style>

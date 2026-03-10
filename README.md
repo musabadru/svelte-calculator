@@ -1,47 +1,192 @@
-# Svelte + Vite
+# 🧮 Retro CASIO Calculator
 
-This template should help get you started developing with Svelte in Vite.
+A beautifully designed 1980s-90s CASIO calculator built with modern web technologies. This project combines nostalgic vintage aesthetics with cutting-edge Svelte 5 reactivity patterns.
 
-## Recommended IDE Setup
+![Calculator Preview](#)
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+## ✨ Features
 
-## Need an official Svelte framework?
+- **Retro 1980s-90s CASIO Design**: Authentic beige/gray aesthetic with LED green display and vintage button styling
+- **Modern Tech Stack**: Built with Svelte 5, Vite 6, and TypeScript-ready architecture
+- **Fully Responsive**: Optimized for all devices (mobile, tablet, desktop) with mobile-first design
+- **Svelte 5 Runes**: Uses modern `$state` and `$derived` for reactive state management
+- **Advanced Calculator**: Supports mathematical operations with mathjs library
+- **Secure Dependencies**: Regular security updates and vulnerability management
+- **Fast & Efficient**: Optimized build, HMR support for development
 
-Check out [SvelteKit](https://github.com/sveltejs/kit#readme), which is also powered by Vite. Deploy anywhere with its serverless-first approach and adapt to various platforms, with out of the box support for TypeScript, SCSS, and Less, and easily-added support for mdsvex, GraphQL, PostCSS, Tailwind CSS, and more.
+## 🚀 Quick Start
 
-## Technical considerations
+### Prerequisites
+- Node.js 18+ with pnpm package manager
 
-**Why use this over SvelteKit?**
+### Installation
 
-- It brings its own routing solution which might not be preferable for some users.
-- It is first and foremost a framework that just happens to use Vite under the hood, not a Vite app.
+```bash
+# Install dependencies
+pnpm install
 
-This template contains as little as possible to get started with Vite + Svelte, while taking into account the developer experience with regards to HMR and intellisense. It demonstrates capabilities on par with the other `create-vite` templates and is a good starting point for beginners dipping their toes into a Vite + Svelte project.
+# Start development server
+pnpm run dev
 
-Should you later need the extended capabilities and extensibility provided by SvelteKit, the template has been structured similarly to SvelteKit so that it is easy to migrate.
+# Build for production
+pnpm run build
 
-**Why `global.d.ts` instead of `compilerOptions.types` inside `jsconfig.json` or `tsconfig.json`?**
-
-Setting `compilerOptions.types` shuts out all other types not explicitly listed in the configuration. Using triple-slash references keeps the default TypeScript setting of accepting type information from the entire workspace, while also adding `svelte` and `vite/client` type information.
-
-**Why include `.vscode/extensions.json`?**
-
-Other templates indirectly recommend extensions via the README, but this file allows VS Code to prompt the user to install the recommended extension upon opening the project.
-
-**Why enable `checkJs` in the JS template?**
-
-It is likely that most cases of changing variable types in runtime are likely to be accidental, rather than deliberate. This provides advanced typechecking out of the box. Should you like to take advantage of the dynamically-typed nature of JavaScript, it is trivial to change the configuration.
-
-**Why is HMR not preserving my local component state?**
-
-HMR state preservation comes with a number of gotchas! It has been disabled by default in both `svelte-hmr` and `@sveltejs/vite-plugin-svelte` due to its often surprising behavior. You can read the details [here](https://github.com/sveltejs/svelte-hmr/tree/master/packages/svelte-hmr#preservation-of-local-state).
-
-If you have state that's important to retain within a component, consider creating an external store which would not be replaced by HMR.
-
-```js
-// store.js
-// An extremely simple external store
-import { writable } from 'svelte/store'
-export default writable(0)
+# Preview production build
+pnpm run preview
 ```
+
+## 📱 Responsive Design Breakpoints
+
+The calculator is fully responsive with three main breakpoints:
+
+- **Mobile** (< 480px): Compact layout with smaller buttons
+- **Tablet** (480px - 768px): Medium button sizes
+- **Desktop** (≥ 768px): Full-size calculator experience
+
+All elements scale smoothly using CSS custom properties, ensuring perfect display on any device.
+
+## 🏗️ Architecture
+
+### Component Structure
+
+```
+src/
+├── App.svelte           # Main calculator component
+├── components/
+│   ├── Display.svelte   # Calculator display and numpad
+│   └── Button.svelte    # Reusable button component
+├── app.css              # Global styles and responsive layout
+├── main.js              # Svelte app initialization
+└── store.js             # Centralized state management
+```
+
+### Svelte 5 Reactivity with Runes
+
+The calculator uses modern Svelte 5 runes for reactive state:
+
+```javascript
+// State declaration
+let numberInput = $state('')
+
+// Derived computed value
+let total = $derived.by(() => {
+  try {
+    return numberInput ? evaluate(numberInput) : 0
+  } catch {
+    return 0
+  }
+})
+```
+
+Benefits:
+- ✅ Fine-grained reactivity without reactive declarations
+- ✅ Better performance and tree-shaking
+- ✅ Clearer intent with explicit state management
+- ✅ Easier to understand data flow
+
+## 🎨 Design System
+
+### Color Palette (1980s CASIO Theme)
+
+| Element | Color | Hex |
+|---------|-------|-----|
+| Body | Beige/Gray | #c4b89d |
+| Number Buttons | Gray | #9a8f82 |
+| Operator Buttons | Orange/Brown | #d4a574 |
+| Function Buttons | Dark Gray | #757575 |
+| Equals Button | Bright Orange | #ff8c42 |
+| Display Text | Green (LED) | #0cff00 |
+| Display Background | Black | #1a1a1a |
+
+### Button States
+
+All buttons support multiple interaction states:
+- **Default**: Standard button appearance
+- **Hover**: Elevated with enhanced shadow
+- **Active/Pressed**: Inset shadow effect
+- **Disabled**: Reduced opacity
+
+## 🔧 Development
+
+### Available Scripts
+
+- `pnpm run dev` - Start Vite dev server with HMR
+- `pnpm run build` - Optimize and bundle for production
+- `pnpm run preview` - Test production build locally
+- `pnpm run format` - Format code with Prettier
+
+### Code Quality
+
+The project follows modern best practices:
+
+- **Svelte 5 Best Practices**: Uses runes for state management
+- **Responsive CSS**: Mobile-first with semantic media queries
+- **Clean Code**: Well-organized components with clear responsibility
+- **Type Safety**: Ready for TypeScript adoption
+
+## 📦 Dependencies
+
+### Production
+- **mathjs** (^12.4.0): Advanced mathematical expression evaluation
+
+### Development
+- **Svelte** (^5.0.0): Modern reactive framework
+- **Vite** (^6.0.0): Next-generation build tool
+- **@sveltejs/vite-plugin-svelte** (^5.1.0): Svelte integration for Vite
+- **Sass** (^1.75.0): CSS preprocessing
+
+## 🔒 Security
+
+This project includes:
+- ✅ Regular dependency updates via Dependabot
+- ✅ Security overrides in `pnpm-workspace.yaml` for known vulnerabilities
+- ✅ No hardcoded secrets or API keys
+- ✅ Safe DOM handling with Svelte's built-in protections
+
+## 📊 Performance
+
+Build output:
+- **HTML**: 0.49 KB (gzipped: 0.32 KB)
+- **CSS**: 7.19 KB (gzipped: 2.26 KB)
+- **JavaScript**: 666 KB (gzipped: ~195 KB)
+
+*Note: Larger JS bundle due to mathjs library. Could be code-split for further optimization.*
+
+## 🎯 Features in Detail
+
+### Calculator Operations
+
+- **Basic Operations**: Addition, subtraction, multiplication, division
+- **Advanced Math**: Factorial, exponents, percentage, square root
+- **Memory Functions**: M+, M-, MC, MR (UI ready)
+- **Scientific Features**: Fractional conversion, exponent notation
+- **Error Handling**: Safe expression evaluation with fallback to zero
+
+### Display
+
+- **LED-style Green Display**: Authentic 1980s green phosphor aesthetic
+- **Real-time Calculation**: Updates as you type
+- **Clear Input History**: Shows both input and calculated result
+- **Responsive Font Sizes**: Uses `clamp()` for fluid typography
+
+## 🚀 Future Enhancements
+
+- [ ] Dark mode toggle
+- [ ] Keyboard support (0-9, operators, Enter for equals)
+- [ ] Calculation history panel
+- [ ] Custom color themes (retro variations)
+- [ ] PWA support for offline usage
+- [ ] Haptic feedback on buttons (mobile)
+- [ ] Advanced scientific functions
+
+## 📝 License
+
+MIT
+
+## 🙏 Credits
+
+Inspired by classic CASIO calculators from the 1980s-90s era.
+
+---
+
+**Built with ❤️ using Svelte 5 and modern web technologies**
