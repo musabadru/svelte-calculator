@@ -11,14 +11,12 @@
     "format": "prettier src/ --write --no-semi true bracket-new-line false --svelte-sort-order 'options-scripts-markup-styles'"
   },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^2.2.0",
-    "carbon-components-svelte": "^0.74.0",
-    "sass": "^1.62.1",
-    "svelte": "^3.57.0",
-    "svelte-preprocess": "^5.0.3",
-    "vite": "^4.3.9"
+    "@sveltejs/vite-plugin-svelte": "^5.1.0",
+    "sass": "^1.75.0",
+    "svelte": "^5.0.0",
+    "vite": "^6.0.0"
   },
   "dependencies": {
-    "mathjs": "^11.9.1"
+    "mathjs": "^12.4.0"
   }
 }
